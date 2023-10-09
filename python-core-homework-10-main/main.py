@@ -23,8 +23,8 @@ class Phone(Field):
 
     @staticmethod
     def is_valid_phone(phone):
-        # Обновленное регулярное выражение для номера телефона
-        pattern = r"^\+?\d{10,15}$|^\d{10,15}$"
+        # Обновленное регулярное выражение для номера телефона (ровно 10 цифр)
+        pattern = r"^\+?\d{10}$|^\d{10}$"
         return bool(re.match(pattern, phone))
 
 
