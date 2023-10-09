@@ -17,22 +17,15 @@ class Name(Field):
 
 class Phone(Field):
     def __init__(self, value):
-        if not self.is_valid_phone(value):
+        if not Phone.is_valid_phone(value):
             raise ValueError("Invalid phone number format")
         super().__init__(value)
 
     @staticmethod
     def is_valid_phone(phone):
-        # Уточним регулярное выражение для номера телефона
-        pattern = r"^\+?\d{1,4}[\d\- ]*$"
-        if not re.match(pattern, phone):
-            return False
-
-        # Добавим проверку длины номера
-        if len(re.sub(r"[^0-9]", "", phone)) < 10:
-            return False
-
-        return True
+        # Обновленное регулярное выражение для номера телефона
+        pattern = r"^\+?\d{10,15}$|^\d{10,15}$"
+        return bool(re.match(pattern, phone))
 
 
 class Record:
